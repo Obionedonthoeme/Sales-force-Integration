@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: patient-portal-frontend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: patient-portal-frontend
+  template:
+    metadata:
+      labels:
+        app: patient-portal-frontend
+    spec:
+      containers:
+        - name: frontend
+          image: patient-portal-frontend:latest
+          ports:
+            - containerPort: 3000
