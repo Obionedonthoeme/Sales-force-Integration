@@ -124,7 +124,34 @@ pytest tests/
 
 -  Initial appointment and patient data sync  
 -  Real-time webhook support for instant updates  
--  Calendar event integration with Salesforce Lightning  
+-  Calendar event integration with Salesforce Lightning
+
+
+# 📦 POPA Health AI - Kubernetes Deployment
+
+POPA Health AI is now fully containerized and deployable using Kubernetes! The infrastructure leverages two deployment files located in the `k8s/` directory:
+
+- **`backend-deployment.yaml`**: Deploys the FastAPI backend service.  
+- **`frontend-deployment.yaml`**: Deploys the React-based frontend application.  
+
+---
+
+##  **Deployment Steps**
+
+### 1️ Prerequisites
+- Kubernetes cluster running on AWS EKS (or your preferred provider)  
+- `kubectl` configured to access your cluster  
+- Docker images built and pushed to DockerHub or AWS ECR  
+- Salesforce credentials stored as Kubernetes secrets  
+
+---
+
+### 2️ Deploy the Backend
+
+1. Apply the backend deployment:
+   ```bash
+   kubectl apply -f k8s/backend-deployment.yaml
+
 
 ---
 
