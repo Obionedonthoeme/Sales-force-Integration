@@ -1,20 +1,20 @@
-# 🧩 Salesforce Integration - POPA Health AI
+#  Salesforce Integration - POPA Health AI
 
 This module integrates **Salesforce** into the **POPA Health AI** platform to manage patient relationships, streamline appointment scheduling, and synchronize Electronic Health Records (EHR) data.
 
 ---
 
-## 🚀 Features
+##  Features
 
-- 🔄 **Bi-directional data sync** between POPA Health and Salesforce.
-- 📝 **Appointment management** with automatic updates in Salesforce CRM.
-- 📊 **Patient record synchronization** using FHIR standards for EHR data.
-- 🔐 **Secure API connections** with OAuth 2.0 authentication.
-- 🩺 **Health Cloud integration** for healthcare-specific data handling.
+-  **Bi-directional data sync** between POPA Health and Salesforce.
+-  **Appointment management** with automatic updates in Salesforce CRM.
+-  **Patient record synchronization** using FHIR standards for EHR data.
+-  **Secure API connections** with OAuth 2.0 authentication.
+-  **Health Cloud integration** for healthcare-specific data handling.
 
 ---
 
-## 📦 Project Structure
+##  Project Structure
 
 ```
 POPA-Health-AI/
@@ -31,22 +31,22 @@ POPA-Health-AI/
 
 ---
 
-## ⚙️ Setup & Installation
+##  Setup & Installation
 
-### 1️⃣ **Clone the Repository**
+### 1️ **Clone the Repository**
 ```bash
 git clone https://github.com/Obionedonthoeme/POPA-Health-AI.git
 cd POPA-Health-AI/salesforce-integration
 ```
 
-### 2️⃣ **Install Dependencies**
+### 2️ **Install Dependencies**
 ```bash
 python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-### 3️⃣ **Configure Environment Variables**
+### 3️ **Configure Environment Variables**
 
 Create a `.env` file in the `salesforce-integration/` directory with the following content:
 ```env
@@ -61,21 +61,21 @@ SALESFORCE_INSTANCE_URL=https://your-instance.salesforce.com
 
 ---
 
-## 🔄 Data Synchronization
+## 4 Data Synchronization
 
-### 🗓️ **Sync Appointments**
+###  **Sync Appointments**
 ```bash
 python src/sync_appointments.py
 ```
 
-### 🧑‍⚕️ **Sync Patient Records**
+###  **Sync Patient Records**
 ```bash
 python src/sync_patients.py
 ```
 
 ---
 
-## 🔑 Authentication
+##  Authentication
 
 OAuth 2.0 is used to securely authenticate with Salesforce:
 
@@ -84,26 +84,26 @@ OAuth 2.0 is used to securely authenticate with Salesforce:
 
 ---
 
-## 🛡️ Security & Compliance
+##  Security & Compliance
 
-- ✅ **OAuth 2.0** ensures secure API communications.  
-- 🩺 **HIPAA compliance:** All patient data is handled securely and in compliance with regulations.  
-- 🔒 **Environment variables** prevent sensitive data exposure.
+-  **OAuth 2.0** ensures secure API communications.  
+-  **HIPAA compliance:** All patient data is handled securely and in compliance with regulations.  
+-  **Environment variables** prevent sensitive data exposure.
 
 ---
 
-## 🧪 Testing
+##  Testing
 To run unit tests:
 ```bash
 pytest tests/
 ```
-✅ Tests cover authentication, data synchronization, and error handling.
+ Tests cover authentication, data synchronization, and error handling.
 
 ---
 
-## 📝 Troubleshooting
+##  Troubleshooting
 
-- 🚫 **Invalid OAuth token:**  
+-  **Invalid OAuth token:**  
   Run the following to refresh tokens:  
   ```bash
   python src/auth.py
@@ -113,18 +113,18 @@ pytest tests/
   - Verify `SALESFORCE_INSTANCE_URL` and credentials in your `.env` file.  
   - Check Salesforce API availability.
 
-- 📊 **API limits reached:**  
+-  **API limits reached:**  
   Salesforce enforces daily API call limits.  
   - Monitor usage in Salesforce settings.  
   - Optimize sync intervals to prevent overuse.
 
 ---
 
-## 📊 Roadmap
+##  Roadmap
 
-- ✅ Initial appointment and patient data sync  
-- 🚧 Real-time webhook support for instant updates  
-- 📅 Calendar event integration with Salesforce Lightning  
+-  Initial appointment and patient data sync  
+-  Real-time webhook support for instant updates  
+-  Calendar event integration with Salesforce Lightning  
 
 ---
 
