@@ -1,116 +1,84 @@
-# Project: POPA Health AI
+# 🧩 Salesforce Integration - POPA Health AI
 
-POPA Health AI is an AI-driven patient engagement platform that provides:
-- Personalized health recommendations
-- Appointment management
-- Integration with wearable devices (Apple HealthKit, Fitbit, Garmin) and EHR systems (FHIR/HL7)
-- Deployment on AWS with Kubernetes (EKS), Terraform for Infrastructure as Code (IaC), and a CI/CD pipeline via GitHub Actions
+This module integrates **Salesforce** into the **POPA Health AI** platform to manage patient relationships, streamline appointment scheduling, and synchronize Electronic Health Records (EHR) data.
+
+---
 
 ## 🚀 Features
-- 🤖 **Conversational AI**: Utilizes Large Language Models (LLMs) for patient interactions.
-- 📅 **Appointment Management**: Schedule, reschedule, and cancel appointments seamlessly.
-- 🩺 **Health Data Integration**: Connects with wearables and EHR systems for comprehensive patient data.
-- 🖥️ **Secure Backend**: FastAPI-powered with JWT-based authentication and HIPAA-compliant encryption.
-- 📊 **Modern Frontend**: React application with animated dashboards and responsive design.
-- ☁️ **Scalable Deployment**: AWS EKS orchestration with Terraform-managed infrastructure.
-- 🔄 **Automated CI/CD**: GitHub Actions pipeline ensures consistent and reliable deployments.
+
+- 🔄 **Bi-directional data sync** between POPA Health and Salesforce.
+- 📝 **Appointment management** with automatic updates in Salesforce CRM.
+- 📊 **Patient record synchronization** using FHIR standards for EHR data.
+- 🔐 **Secure API connections** with OAuth 2.0 authentication.
+- 🩺 **Health Cloud integration** for healthcare-specific data handling.
 
 ---
 
 ## 📦 Project Structure
 
-POPA-Health-AI/ ├── backend/ # FastAPI backend service │
-├── app/ │ │ ├── main.py # FastAPI entry point │ 
-│ ├── routes/ # API routes │ 
-│ ├── models/ # Database models │ 
-│ └── services/ # Business logic and integrations │ 
-├── requirements.txt # Python dependencies │
-└── Dockerfile # Backend Docker configuration
-├── frontend/ # React frontend application │
-├── src/ │ │ ├── components/ # Reusable UI components │
-│ ├── pages/ # Page views │
-│ └── services/ # API request handlers │
-├── package.json # Node.js dependencies │
-└── Dockerfile # Frontend Docker configuration 
-├── infrastructure/ # Terraform for AWS infrastructure │
-├── main.tf # Main Terraform configuration │ 
-├── variables.tf # Terraform variables │ 
-└── outputs.tf # Terraform outputs ├── .github/ │ 
-└── workflows/ci-cd.yml # GitHub Actions CI/CD pipeline 
-├── .gitignore # Git ignored files
-└── README.md # Project documentation (this file)
+POPA-Health-AI/ ├── salesforce-integration/ │ ├── src/ │ │ ├── auth.py # Handles OAuth authentication with Salesforce │ │ ├── sync_appointments.py # Synchronizes appointment data │ │ ├── sync_patients.py # Synchronizes patient data │ │ └── utils.py # Utility functions for data transformation │ ├── requirements.txt # Python dependencies │ └── README.md # This file └── .env # Environment variables (Salesforce credentials)
 
 
 ---
 
-## Setup & Installation
+## ⚙️ Setup & Installation
 
-# Clone the Repository**
+### 1️⃣ **Clone the Repository**
+
+```bash
+git clone https://github.com/Obionedonthoeme/POPA-Health-AI.git
+cd POPA-Health-AI/salesforce-integration
 
 bash
-git clone https://github.com/Obionedonthoeme/POPA-Health-AI.git
-cd POPA-Health-AI
-
-
-
-# Backend Setup
-
-cd backend
 python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
-uvicorn app.main:app --reload
+
+env
+SALESFORCE_CLIENT_ID=your_client_id
+SALESFORCE_CLIENT_SECRET=your_client_secret
+SALESFORCE_USERNAME=your_salesforce_username
+SALESFORCE_PASSWORD=your_salesforce_password
+SALESFORCE_SECURITY_TOKEN=your_security_token
+SALESFORCE_INSTANCE_URL=https://your-instance.salesforce.com
 
 
-# Frontend Setup
-
-cd ../frontend
-npm install
-npm run dev
-
-# Deployment Infrastructure Provisioning (Terraform)
-
-cd infrastructure
-terraform init
-terraform apply
-
-# Containerization & Deployment
-docker build -t backend:latest ./backend
-docker build -t frontend:latest ./frontend
-
-# Push Images to AWS ECR
-
-aws ecr get-login-password | docker login --username AWS --password-stdin <account_id>.dkr.ecr.<region>.amazonaws.com
-
-docker tag backend:latest <ecr_repo>/backend:latest
-docker tag frontend:latest <ecr_repo>/frontend:latest
-
-docker push <ecr_repo>/backend:latest
-docker push <ecr_repo>/frontend:latest
-
-# Deploy Containers to AWS EKS
-
-kubectl apply -f k8s/backend-deployment.yml
-kubectl apply -f k8s/frontend-deployment.yml
+bash
+python src/sync_appointments.py
 
 
-# CI/CD Pipeline
-The project uses GitHub Actions for automated workflows:
+bash
+python src/sync_patient.py
 
- Builds Docker images
- Pushes to AWS ECR
- Deploys to AWS EKS
- Pipeline Configuration: .github/workflows/ci-cd.yml
 
- # Security & Compliance
- JWT-based authentication ensures secure API access.
- HIPAA-compliant encryption protects patient data.
- Regular security patches applied to infrastructure and code.
- Monitoring & Logging
- AWS CloudWatch integration for resource monitoring.
- Centralized logging ensures quick diagnostics.
- Alerts set for system health and uptime.
+  Authentication
+OAuth 2.0 is used to securely authenticate with Salesforce:
 
+The auth.py module handles token retrieval and refresh.
+Tokens are automatically cached for efficiency.
+Security & Compliance
+ OAuth 2.0 ensures secure API communications.
+ All patient data is handled in compliance with HIPAA standards.
+ Environment variables are used to prevent sensitive data exposure.
+
+bash
+pytest tests/
+
+
+📝 Troubleshooting
+Invalid OAuth token:
+Run python src/auth.py to refresh tokens.
+
+Connection errors:
+Verify your SALESFORCE_INSTANCE_URL and credentials in .env.
+
+API limits reached:
+Salesforce has daily API call limits. Monitor usage in Salesforce settings.
+
+# Roadmap
+ Initial appointment and patient data sync
+ Real-time webhook support for instant updates
+ Calendar event integration with Salesforce Lightning
 
 
 
