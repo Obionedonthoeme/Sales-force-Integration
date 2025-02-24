@@ -29,12 +29,12 @@ POPA-Health-AI/ ├── salesforce-integration/ │ ├── src/ │ │ ├
 git clone https://github.com/Obionedonthoeme/POPA-Health-AI.git
 cd POPA-Health-AI/salesforce-integration
 
-bash
+```bash
 python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
 
-env
+```env
 SALESFORCE_CLIENT_ID=your_client_id
 SALESFORCE_CLIENT_SECRET=your_client_secret
 SALESFORCE_USERNAME=your_salesforce_username
@@ -43,11 +43,11 @@ SALESFORCE_SECURITY_TOKEN=your_security_token
 SALESFORCE_INSTANCE_URL=https://your-instance.salesforce.com
 
 
-bash
+```bash
 python src/sync_appointments.py
 
 
-bash
+```bash
 python src/sync_patient.py
 
 
@@ -61,7 +61,7 @@ Security & Compliance
  All patient data is handled in compliance with HIPAA standards.
  Environment variables are used to prevent sensitive data exposure.
 
-bash
+```bash
 pytest tests/
 
 
